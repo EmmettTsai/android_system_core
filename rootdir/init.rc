@@ -295,6 +295,7 @@ on post-fs
     #     /odm/build.prop,
     #     /vendor/build.prop and
     #     /factory/factory.prop
+    setenforce 0
     load_system_props
     # start essential services
     start logd
@@ -487,6 +488,8 @@ on post-fs-data
     mkdir /data/cache/backup 0700 system system
 
     init_user0
+
+    setprop selinux.reload_policy 0
 
     # Set SELinux security contexts on upgrade or policy update.
     restorecon --recursive --skip-ce /data
